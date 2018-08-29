@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="449f13cb-7ae6-4de3-84f3-d90a66b295fa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Python.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cartesian.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cartesian.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cartesianToLengths.py" beforeDir="false" afterPath="$PROJECT_DIR$/cartesianToLengths.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,18 +45,21 @@
     <session id="-2094236794">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="102" />
+          <entry key="py" value="441" />
+          <entry key="txt" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="102" />
+          <entry key="PLAIN_TEXT" value="18" />
+          <entry key="Python" value="441" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open" />
@@ -70,10 +71,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cartesianToLengths.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="232" column="35" selection-start-line="232" selection-start-column="35" selection-end-line="232" selection-end-column="35" />
+            <state relative-caret-position="660">
+              <caret line="246" column="44" selection-start-line="246" selection-start-column="44" selection-end-line="246" selection-end-column="44" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,8 +100,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="163" />
-    <option name="y" value="83" />
+    <option name="x" value="119" />
+    <option name="y" value="80" />
     <option name="width" value="1209" />
     <option name="height" value="1109" />
   </component>
@@ -156,9 +157,9 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cartesianToLengths.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="true" />
+      <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="$PROJECT_DIR$/cartesian.txt" />
       <method v="2" />
     </configuration>
@@ -179,10 +180,18 @@
       <option name="presentableId" value="Default" />
       <updated>1535439110373</updated>
     </task>
+    <task id="LOCAL-00001" summary="Started ouput pipe">
+      <created>1535536847821</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1535536847821</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="163" y="83" width="1209" height="1109" extended-state="0" />
+    <frame x="119" y="80" width="1209" height="1109" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20826307" />
@@ -190,7 +199,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" x="2158" y="610" width="1474" height="550" id="Run" order="2" type="FLOATING" visible="true" weight="0.32925585" />
+      <window_info anchor="bottom" x="2158" y="610" width="1474" height="550" id="Run" order="2" type="FLOATING" weight="0.32925585" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39959225" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -207,13 +216,17 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Started ouput pipe" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started ouput pipe" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cartesianToLengths.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="232" column="35" selection-start-line="232" selection-start-column="35" selection-end-line="232" selection-end-column="35" />
+        <state relative-caret-position="660">
+          <caret line="246" column="44" selection-start-line="246" selection-start-column="44" selection-end-line="246" selection-end-column="44" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>

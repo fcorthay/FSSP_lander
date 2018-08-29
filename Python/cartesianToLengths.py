@@ -1,10 +1,12 @@
-import sys
 import re
 import numpy as np
 import time
 
 pipes_Location = '/tmp/lander'
+pipe_from_controller = pipes_Location + '/controlToCalculator'
 pipe_to_controller = pipes_Location + '/calculatorToControl'
+pipe_to_axes = pipes_Location + '/calculatorToAxes'
+pipe_from_axes = pipes_Location + '/calculatorFromAxes'
 
 relative_movement = False
 position = [0.0, 0.0, 0.0]
@@ -18,7 +20,7 @@ fixing_points = [
 ]
 end_of_work = False
 
-verbose = 1
+verbose = 2
 indent = '  '
 
 # ==============================================================================
@@ -104,25 +106,31 @@ def position_to_lengths(position, fixing_points):
 # ------------------------------------------------------------------------------
 # send displacement with absolute coordinates
 #
-def send_absolute(position, fixing_points):
-    """returns a time from a g-code"""
+def build_absolute_command(position, fixing_points):
+    """returns a g-code for an absolute movement"""
                                                              # set absolute mode
-    print('g90')
+    command = "G90\n"
                                                              # send displacement
     lengths = position_to_lengths(position, fixing_points)
-    print("g0 x%d y%d z%d" % (lengths[0], lengths[1], lengths[2]))
+    command += "G0 x%d y%d z%d\n" % (lengths[0], lengths[1], lengths[2])
                                                              # set relative mode
-    print('g91')
+    command += 'G91'
+
+    return(command)
 
 # ==============================================================================
 # main loop
 #
+from_controller = open(pipe_from_controller, 'r')
 to_controller = open(pipe_to_controller, 'w')
+to_axes = open(pipe_to_axes, 'w')
+# from_axes = open(pipe_from_axes, 'r')
 while not end_of_work:
-    g_code = sys.stdin.readline().lower()
+    g_code = from_controller.readline().lower()
     g_code = re.sub(';.*', '', g_code).rstrip()
     if len(g_code) > 0:
         reply = 'KO'
+        axes_control = ''
         if verbose > 0:
             print(g_code)
                                                                   # parse g-code
@@ -182,7 +190,7 @@ while not end_of_work:
                             position[0], position[1], position[2]
                         )
                     )
-                send_absolute(position, fixing_points)
+                axes_control = build_absolute_command(position, fixing_points)
                 reply = 'OK'
                                                           # absolute coordinates
             elif code_id == 90:
@@ -203,6 +211,7 @@ while not end_of_work:
                 end_of_work = True
                 if verbose > 1:
                     print(indent + 'stopping the machine')
+                axes_control = 'M00'
                 reply = 'OK'
                                                                  # fixing points
             elif (code_id == 131) or (code_id == 132) or (code_id == 133):
@@ -230,6 +239,18 @@ while not end_of_work:
                         )
                     )
                 reply = 'OK'
-    to_controller.write(reply + "\n")
+        if len(axes_control) > 0:
+            if verbose > 0:
+                control_lines = axes_control.split("\n")
+                for control_line in control_lines:
+                    print(2*indent + control_line)
+            to_axes.write(axes_control + "\n")
+        if verbose > 0:
+            print(indent + reply + ' ' + g_code)
+        to_controller.write(reply + "\n")
 
+from_controller.close()
+to_controller.close()
+to_axes.close()
+# from_axes.close()
 print("\nDone")
