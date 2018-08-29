@@ -1,0 +1,13 @@
+m131 x0 y100 z3000
+m132 x5000 y200 z3000
+m133 x2000 y5000 z3000
+g28 ; goto start position
+g90 ; absolute coordinates
+g0 x1500 y2000 z2500 ; go to start position
+g4 s2
+g91 ; relative moves
+g0 x100 y-100
+g1 x-100 y100 f1000
+hello world
+M00
+
