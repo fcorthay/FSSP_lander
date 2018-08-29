@@ -1,2 +1,3 @@
-# FSSP_lander
-FabLab Sion Space Program lander
+# FSSP lander
+
+The _FabLab Sion Space Program_ includes a lander held on 3 cables which is to be controlled by a pilot.
