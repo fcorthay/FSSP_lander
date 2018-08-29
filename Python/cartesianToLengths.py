@@ -3,6 +3,9 @@ import re
 import numpy as np
 import time
 
+pipes_Location = '/tmp/lander'
+pipe_to_controller = pipes_Location + '/calculatorToControl'
+
 relative_movement = False
 position = [0.0, 0.0, 0.0]
 start_position = [0.0, 0.0, 0.0]
@@ -114,6 +117,7 @@ def send_absolute(position, fixing_points):
 # ==============================================================================
 # main loop
 #
+to_controller = open(pipe_to_controller, 'w')
 while not end_of_work:
     g_code = sys.stdin.readline().lower()
     g_code = re.sub(';.*', '', g_code).rstrip()
@@ -226,6 +230,6 @@ while not end_of_work:
                         )
                     )
                 reply = 'OK'
-    print(reply)
+    to_controller.write(reply + "\n")
 
 print("\nDone")
