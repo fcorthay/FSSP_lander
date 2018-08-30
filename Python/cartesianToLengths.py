@@ -108,13 +108,9 @@ def position_to_lengths(position, fixing_points):
 #
 def build_absolute_command(position, fixing_points):
     """returns a g-code for an absolute movement"""
-                                                             # set absolute mode
-    command = "G90\n"
                                                              # send displacement
     lengths = position_to_lengths(position, fixing_points)
-    command += "G0 x%d y%d z%d\n" % (lengths[0], lengths[1], lengths[2])
-                                                             # set relative mode
-    command += 'G91'
+    command = "G0 x%d y%d z%d" % (lengths[0], lengths[1], lengths[2])
 
     return(command)
 
@@ -125,6 +121,7 @@ from_controller = open(pipe_from_controller, 'r')
 to_controller = open(pipe_to_controller, 'w')
 to_axes = open(pipe_to_axes, 'w')
 # from_axes = open(pipe_from_axes, 'r')
+to_axes.write("G90\n")
 while not end_of_work:
     g_code = from_controller.readline().lower()
     g_code = re.sub(';.*', '', g_code).rstrip()
@@ -171,6 +168,9 @@ while not end_of_work:
                     )
                 if code_id == 1:
                     displacement_speed = g_speed(parameters, displacement_speed)
+                axes_control = build_absolute_command(position, fixing_points)
+                if code_id == 1:
+                    axes_control = 'G1' + axes_control[2 :]
                 reply = 'OK'
                                                                           # wait
             elif code_id == 4:
@@ -246,7 +246,8 @@ while not end_of_work:
                     print(2*indent + control_line)
             to_axes.write(axes_control + "\n")
         if verbose > 0:
-            print(indent + reply + ' ' + g_code)
+            # reply = reply + ' ' + g_code
+            print(indent + reply)
         to_controller.write(reply + "\n")
 
 from_controller.close()

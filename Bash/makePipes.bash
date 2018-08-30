@@ -8,7 +8,7 @@ mkdir -p $PIPES_DIRECTORY
 pipes=( calculatorFromControl calculatorToControl calculatorToAxes calculatorFromAxes )
 for pipe in "${pipes[@]}" ; do
   echo "creating pipe $pipe"
-  rm $PIPES_DIRECTORY/$pipe
+  rm -f $PIPES_DIRECTORY/$pipe
   mkfifo $PIPES_DIRECTORY/$pipe
 done
 
